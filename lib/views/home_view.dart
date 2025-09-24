@@ -27,7 +27,11 @@ class _HomeViewState extends State<HomeView> {
           Expression exp = p.parse(finalExpression);
           ContextModel cm = ContextModel();
           double eval = exp.evaluate(EvaluationType.REAL, cm);
-          _result = eval.toString();
+          if (eval % 1 == 0) {
+            _result = eval.toInt().toString(); // لو صحيح شيله العلامات العشرية
+          } else {
+            _result = eval.toString(); // لو عشري سيبه زي ما هو
+          }
         } catch (e) {
           _result = 'Error';
         }
